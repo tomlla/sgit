@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -x
+set -e 
+
+if [ -d .sgit ]; then
+	echo "Already exists $(pwd)/.sgit"
+	exit 1
+fi
+
+mkdir .sgit
+mkdir .sgit/objects
+echo "Initialized empty [[[ S-Git ]]] repository in $(pwd)/.sgit"
