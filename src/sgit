@@ -1,0 +1,18 @@
+#!/bin/sh
+set -x
+set -e
+
+SGIT_SCRIPS_PATH=$(cd `dirname $0`; pwd)
+ARGC=$#
+
+if [ $ARGC -ge 1 ]; then
+	if [ -x $SGIT_SCRIPS_PATH/sgit-$1 ]; then
+		SUB_COMMAND=$1
+		shift
+		# $SUB_COMMANDのあとの引数 $0がちゃんと渡ってるか未テスト
+		# ただし sgit init が sgit-init init のようにはわたっていない
+		exec $SGIT_SCRIPS_PATH/sgit-$SUB_COMMAND "$@"
+	fi
+fi
+
+echo "sgit usage"
